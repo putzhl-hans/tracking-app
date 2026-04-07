@@ -26,6 +26,31 @@ android {
         }
     }
 
+    val localProperties = java.util.Properties()
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use { 
+            localProperties.load(it) 
+        }
+    }
+
+    defaultConfig {
+        applicationId = "com.endourev.trackingphone"
+        minSdk = 26
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "EMAIL_SENDER", "\"${localProperties.getProperty("email.sender") ?: ""}\"")
+        buildConfigField("String", "EMAIL_PASSWORD", "\"${localProperties.getProperty("email.password") ?: ""}\"")
+        buildConfigField("String", "EMAIL_RECEIVER", "\"${localProperties.getProperty("email.receiver") ?: ""}\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

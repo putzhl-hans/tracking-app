@@ -9,8 +9,8 @@ import javax.mail.util.ByteArrayDataSource
 class EmailSender {
 
     fun sendEmailWithImage(imageBytes: ByteArray) {
-        val username = "emailkamu@gmail.com"
-        val password = "APP_PASSWORD"
+        val username = BuildConfig.EMAIL_SENDER
+        val password = BuildConfig.EMAIL_PASSWORD
 
         val props = Properties().apply {
             put("mail.smtp.auth", "true")
@@ -31,7 +31,7 @@ class EmailSender {
                 message.setFrom(InternetAddress(username))
                 message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("emailtujuan@gmail.com")
+                    InternetAddress.parse(BuildConfig.EMAIL_RECEIVER)
                 )
                 message.subject = "Foto dari aplikasi"
 

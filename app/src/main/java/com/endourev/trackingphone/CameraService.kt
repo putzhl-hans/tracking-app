@@ -121,9 +121,9 @@ class CameraService : Service() {
                     put("mail.smtp.port", "587")
                 }
 
-                val senderEmail = "akunmu@gmail.com"
-                val senderPass = "XXXX XXXX XXXX XXXX"
-                val receiverEmail = "akunmu@gmail.com"
+                val senderEmail = BuildConfig.EMAIL_SENDER
+                val senderPass = BuildConfig.EMAIL_PASSWORD
+                val receiverEmail = BuildConfig.EMAIL_RECEIVER
 
                 val session = Session.getInstance(props, object : Authenticator() {
                     override fun getPasswordAuthentication() =
